@@ -6,11 +6,15 @@ export default class SearchBar extends Component {
         super(props);
         this.state = {
             value: '',
+            sort: 'time',
+            window: 'all'
         };
         
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSort = this.handleSort.bind(this);
+        this.handleWindow = this.handleWindow.bind(this);
     }
     
     handleKeyPress(e) {
@@ -25,13 +29,34 @@ export default class SearchBar extends Component {
         });
     }
     
+    handleSort(e) {
+        if(e.target.value == "top") {
+            this.setState({
+                sort: e.target.value,
+            });
+        } else {
+            this.setState({
+                sort: e.target.value,
+                window: "all"
+            });
+        }
+    }
+    
+    handleWindow(e) {
+        this.setState({
+            window: e.target.value
+        });
+    }
+    
     handleSubmit() {
-        const { value } = this.state;
-        this.props.onHandleSubmit(value);
+        const { value, sort, window } = this.state;
+        this.props.onHandleSubmit(value, sort, window);
     }
 
 
     render() {
+        const { sort } = this.state;
+        
         return (
             <section className="section">
                 <input
@@ -42,8 +67,24 @@ export default class SearchBar extends Component {
                     onKeyPress={this.handleKeyPress}
                 />
                 <button className="button" onClick={this.handleSubmit}>
-                    Add Item
+                    Enter
                 </button>
+                <div className="btn-group btn-group-sm" data-toggle="dropdown" onClick={this.handleSort}>
+                    <button value="time" type="button" className="btn btn-secondary ">Time</button>
+                    <button value="viral" type="button" className="btn btn-secondary">Viral</button>
+                    <button value="top" type="button" className ="btn btn-secondary">Top</button>
+                </div>
+                {
+                    sort == "top" ?
+                    (<div class="btn-group btn-group-sm" data-toggle="dropdown" onClick={this.handleWindow}>
+                        <button value="day" type="button" className="btn btn-secondary">Day</button>
+                        <button value="week" type="button" className="btn btn-secondary">Week</button>
+                        <button value="month" type="button" className ="btn btn-secondary">Month</button>
+                        <button value="year" type="button" className="btn btn-secondary">Year</button>
+                        <button value="all" type="button" className ="btn btn-secondary">All</button>
+                    </div>)
+                    : null    
+                }
           </section>
         );
     }

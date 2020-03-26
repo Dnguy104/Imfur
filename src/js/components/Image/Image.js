@@ -6,7 +6,7 @@ export default function Image(props) {
 	return(
 		<div id="iimage">
 			<img src={props.src} />
-			<h5 id="imageHeader">{props.title} {props.key}</h5>
+			<h5 id="imageHeader">{props.title}</h5>
 		</div>
 	);
 }

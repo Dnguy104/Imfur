@@ -1,0 +1,27 @@
+#imageBoard {
+  	column-gap: 0px;
+  	margin:0 auto;
+    padding-bottom: 70px;
+}
+
+
+@media only screen and (min-width: 1024px) {
+  #imageBoard {
+    column-count: 4;
+    width: 1036px;
+  }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+  #imageBoard {
+    column-count: 3;
+    width: 768px;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+  #imageBoard {
+    column-count: 2;
+    width: 520px;
+  }
+}

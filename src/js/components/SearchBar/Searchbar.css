@@ -2,3 +2,9 @@
 #addInput {
 	width: 500px;
 }
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0;
+  border-style: none;
+}
