@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import SearchBar from "../SearchBar/SearchBar.js";
 import Image from "../Image/Image.js";
+import "./App.css";
 
 
 export default class App extends Component {
@@ -39,32 +40,40 @@ export default class App extends Component {
     }
 
     render() {
-    	var Images;
+    	let Images;
     	
     	if(this.state.searched) {
     		const data = this.state.data;
     		console.log(data);
     		
-	    	Images = data.map(image => {
-	    		if(!image.is_album) {
-	    			return (<Image src={image.link} />);
-	    		} else {
-	    			return (<Image src={image.images[0].link} />);
+	    	Images = data.filter(image => {
+	    		if(image.is_album) {
+	    			image = image.images[0];
+	    		} 
+	    		if(image.animated) {
+	    			return false;
 	    		}
+	    		return true;
+	    	}).map((image, i) => {
+	    		const title = image.title;
+	    		if(image.is_album) {
+	    			image = image.images[0];
+	    		} 
+	    		return (<Image src={image.link} title={title} key={i}/>)
 	    	});
-
+	    	
+	    	console.log(Images);
     	}
     	
-    	console.log(Images);
 
     	if(this.state.searched) {
     		return (
-    			<Fragment>
+    			<div id="app">
 		         	<SearchBar className='top' onHandleSubmit={this.handleAppSubmit}/>
 		         	<div id="imageBoard" >
 		         		{Images}
 		         	</div>
-	         	</Fragment>
+	         	</div>
       		);
     	} else {
     		return (

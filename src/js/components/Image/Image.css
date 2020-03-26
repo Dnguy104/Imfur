@@ -1,6 +1,24 @@
+#iimage {
+	width: 236px;
+	margin: 0px 8px 16px;
+	
+	background-color: #eee;
+	display: inline-block;
+	border-radius: 15px ;
+
+}
 
 #iimage > img{
-	width: 236px;
+	width: 100%;
+	min-width: 236px;
 	height: auto;
+	border-radius: 15px 15px 0px 0px;
 }
+
+#imageHeader {
+	margin: 8px 8px;
+	padding: 0px 0px 6px 6px;
+
+}
+
 
