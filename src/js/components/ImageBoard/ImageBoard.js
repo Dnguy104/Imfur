@@ -5,7 +5,7 @@ import "./ImageBoard.css";
 
 export default function Imageboard(props) {
 	const data = props.data;
-	
+		
 	const Images = data.filter(image => {
 		if(image.is_album) {
 			image = image.images[0];
@@ -19,7 +19,7 @@ export default function Imageboard(props) {
 		if(image.is_album) {
 			image = image.images[0];
 		} 
-		return (<Image src={image.link} title={title} key={i}/>)
+		return (<Image src={image.link} title={title} key={i} id={i}/>)
 	});
     	
 

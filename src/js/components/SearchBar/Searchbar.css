@@ -3,8 +3,27 @@
 	width: 500px;
 }
 
-.btn:focus {
-  outline: none;
-  box-shadow: 0;
-  border-style: none;
+.section {
+	max-width: 600px;
+	margin: auto;
+}
+
+#addInput {
+	margin-bottom: 10px;
+	margin-right: 10px
+}
+.btn {
+	margin-right: 6px
+}
+
+
+#top {
+	padding-top: 0px;
+	margin: 10px 0px 0px 10px;
+	height: 100px;
+}
+
+#mid {
+	padding-top: 120px;
+	height: 200px;
 }

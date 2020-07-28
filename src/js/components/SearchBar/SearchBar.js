@@ -7,7 +7,8 @@ export default class SearchBar extends Component {
         this.state = {
             value: '',
             sort: 'time',
-            window: 'all'
+            window: 'all',
+            windowtoggle: false
         };
         
         this.handleChange = this.handleChange.bind(this);
@@ -33,19 +34,28 @@ export default class SearchBar extends Component {
         if(e.target.value == "top") {
             this.setState({
                 sort: e.target.value,
+                windowtoggle: !this.state.windowtoggle
             });
         } else {
             this.setState({
                 sort: e.target.value,
-                window: "all"
+                window: "all",
+                windowtoggle: false
             });
+            if(this.state.value) {
+                this.handleSubmit();
+            }
         }
     }
     
     handleWindow(e) {
         this.setState({
-            window: e.target.value
+            window: e.target.value,
+            windowtoggle: false
         });
+        if(this.state.value) {
+            this.handleSubmit();
+        }
     }
     
     handleSubmit() {
@@ -55,10 +65,11 @@ export default class SearchBar extends Component {
 
 
     render() {
-        const { sort } = this.state;
+        const { windowtoggle } = this.state;
         
         return (
-            <section className="section">
+            <section className="section" id={this.props.position}>
+                {this.props.position == "mid" ? (<h1>Imfur!</h1>) : null}
                 <input
                     type="text"
                     id="addInput"
@@ -69,14 +80,15 @@ export default class SearchBar extends Component {
                 <button className="button" onClick={this.handleSubmit}>
                     Enter
                 </button>
+                <br/>
                 <div className="btn-group btn-group-sm" data-toggle="dropdown" onClick={this.handleSort}>
                     <button value="time" type="button" className="btn btn-secondary ">Time</button>
                     <button value="viral" type="button" className="btn btn-secondary">Viral</button>
                     <button value="top" type="button" className ="btn btn-secondary">Top</button>
                 </div>
                 {
-                    sort == "top" ?
-                    (<div class="btn-group btn-group-sm" data-toggle="dropdown" onClick={this.handleWindow}>
+                    windowtoggle ?
+                    (<div className="btn-group btn-group-sm" data-toggle="dropdown" onClick={this.handleWindow}>
                         <button value="day" type="button" className="btn btn-secondary">Day</button>
                         <button value="week" type="button" className="btn btn-secondary">Week</button>
                         <button value="month" type="button" className ="btn btn-secondary">Month</button>

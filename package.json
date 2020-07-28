@@ -1,7 +1,6 @@
 {
-  "name": "FieldWire_TakeHome",
+  "name": "fieldwire_takehome",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "react": "^16.13.1",
@@ -27,5 +26,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }

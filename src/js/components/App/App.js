@@ -13,7 +13,9 @@ export default class App extends Component {
         	data: [],
         	sort:'',
         	window:'',
-        	page: 0
+        	page: 0,
+        	showModal: false,
+        	modalLink: ''
         };
         
         this.handleAppSubmit = this.handleAppSubmit.bind(this);
@@ -22,10 +24,13 @@ export default class App extends Component {
     
     
     handleAppSubmit(value, sort, window, page = 0) {
+    	var data = this.state.data;
+    	if(page == 0) {
+    		data = [];
+    	}
     	
 		this.setState({loading: true});
         const url = "https://api.imgur.com/3/gallery/search/"+sort+"/"+window+"/"+page + "?q=" + value;
-        
         fetch(url, {
             method: "GET",
             headers: {
@@ -35,11 +40,10 @@ export default class App extends Component {
         .then(resp => resp.json())
         .then((obj) => {
             if(obj.status == 200) {
-            	let newDataState = this.state.data;
-            	newDataState.push(obj.data);
+            	data.push(obj.data);
             	
 	            this.setState({
-	            	data: newDataState,
+	            	data: data,
 	            	sort: sort,
 	            	window: window,
 	            	page: page,
@@ -66,7 +70,6 @@ export default class App extends Component {
 			const { page, sort, value, window } = this.state;
 			this.setState({page: page + 1});
 			this.handleAppSubmit(value, sort, window, page + 1);
-			console.log('making gains');
 		}
 	}
     
@@ -87,13 +90,13 @@ export default class App extends Component {
     		
     		return (
     			<div id="app">
-		         	<SearchBar className='top' onHandleSubmit={this.handleAppSubmit}/>
+		         	<SearchBar position="top" onHandleSubmit={this.handleAppSubmit} />
 		         	{ImageBoards}
 	         	</div>
       		);
     	} else {
     		return (
-	         	<SearchBar className='mid' onHandleSubmit={this.handleAppSubmit}/>
+         		<SearchBar position="mid" onHandleSubmit={this.handleAppSubmit}/>
       		);
     	}
     }
