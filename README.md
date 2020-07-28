@@ -10,7 +10,8 @@ Css3
 
 ## About
 This app allows you to use the full capabilities of the imgur image search api. It provides a search bar and query sorts to make filtered queries.
-when the user scrolls to the bottom of the page, it automatically loads more images from the api.
+when the user scrolls to the bottom of the page, it automatically loads more images from the api. The images are also disply in a grid pattern that supports
+dynamic height to improve viewing experience.
 
 Patterns implemented:
 > Infinte scrolling
